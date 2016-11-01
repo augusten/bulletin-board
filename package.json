@@ -1,0 +1,19 @@
+{
+  "name": "bulletin-board",
+  "version": "1.0.0",
+  "description": "bulletin board applcation with postgreSQL",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/augusten/bulletin-board.git"
+  },
+  "author": "Auguste",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/augusten/bulletin-board/issues"
+  },
+  "homepage": "https://github.com/augusten/bulletin-board#readme"
+}
