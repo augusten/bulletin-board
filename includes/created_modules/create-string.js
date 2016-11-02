@@ -1,4 +1,5 @@
-function rfc3986EncodeURIComponent (str) {  
+function rfc3986EncodeURIComponent (str) {
+	// function encodes the text 
     return encodeURIComponent(str).replace(/[']/g, escape);  
 }
 

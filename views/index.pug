@@ -1,23 +1,38 @@
 html
-	head
-		link(rel="stylesheet" href="/css/materialize.min.css")
-		link(rel='stylesheet' href='/css/main.css')
+	- let title = "Leave a message"
+	include incl/header.pug
 	body
-		h1 Leave your message here
-		form(method='post' action='/messages')
-			//- div(class='row')
-			div
-				input(
-					type='text'
-					name='title'
-					placeholder='title'
-					)
-			div
-				input(
-					type='text'
-					name='message'
-					placeholder='message'
-					)
-			div
-				input(type='submit')
-	script(src='/js/materialize.min.js')
+		nav
+			div(class='nav-wrapper')
+				a(href='#' class='brand-logo right') Guestbook
+				ul(id='nav-mobile' class='left hide-on-med-and-down')
+					li
+						a(href='/index') Write
+					li
+						a(href='/messages') Read
+		main
+		div(class='container')
+			div(class='row')
+				h1(class='center-align') Leave your message here
+			div(class='row')
+				form(class='center-align' method='post' action='/messages')
+					//- div(class='row')
+					div
+						input(
+							type='text'
+							name='title'
+							placeholder='title'
+							class='center-align'
+							)
+					div
+						input(
+							type='text'
+							name='message'
+							placeholder='message'
+							class='center-align'
+							)
+					div
+						input(type="submit" class="btn" id="call_back_btn" value="Add message")
+		include incl/footer.pug
+	script(src='/src/js/jquery-3.1.1.min.js')
+	script(src='/src/js/materialize.min.js')

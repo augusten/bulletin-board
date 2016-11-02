@@ -1,3 +1,22 @@
 html {
     font-family: GillSans, Calibri, Trebuchet, sans-serif;
 }
+
+body {
+display: flex;
+min-height: 100vh;
+flex-direction: column;
+}
+
+main {
+flex: 1 0 auto;
+}
+
+nav, footer.page-footer {
+	background-color: #3F51B5;
+}
+
+div.nav-wrapper {
+	margin-left: 20px;
+	margin-right: 20px;
+}

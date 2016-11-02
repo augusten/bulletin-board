@@ -1,7 +1,6 @@
 html
-	head
-		link(rel='stylesheet' href='/css/materialize.min.css')
-		link(rel='stylesheet' href='/css/main.css')
+	- let title = "All messages"
+	include incl/header.pug
 	body
 		nav
 			div(class='nav-wrapper')
@@ -11,6 +10,7 @@ html
 						a(href='/index') Write
 					li
 						a(href='/messages') Read
+		main
 		div(class='container')
 			div(class='row')
 				h1 Look through all the messages
@@ -19,6 +19,7 @@ html
 				- var i = 0
 					each item in data
 						- i += 1
+						//- decode text from database
 						- let title = decodeURIComponent(item.title)
 						- let body = decodeURIComponent(item.body)
 						div(class='divider')
@@ -27,14 +28,6 @@ html
 							p #{ title }
 							p #{ body }
 					div(class='divider')
-						//- div(class='row')
-						//- 	div(class='col s3')
-						//- 	div(class='col s6 center-align') #{ item.title }
-						//- 	div(class='col s3')
-						//- div(class='row')
-						//- 	div(class='col s3')
-						//- 	div(class='col s6 center-align') #{ item.body }
-						//- 	div(class='col s3')
-						//- br
-	//- script(src='/js/jquery-3.1.1.min.js')
-	script(src='/js/materialize.min.js')
+		include incl/footer.pug
+	script(src='/src/js/jquery-3.1.1.min.js')
+	script(src='/src/js/materialize.min.js')
