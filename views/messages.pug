@@ -1,8 +1,40 @@
 html
 	head
+		link(rel='stylesheet' href='/css/materialize.min.css')
+		link(rel='stylesheet' href='/css/main.css')
 	body
-		h1 All messages displayed
-			each item in data
-				div #{ item.title }
-				div #{ item.body }
-				br
+		nav
+			div(class='nav-wrapper')
+				a(href='#' class='brand-logo right') Guestbook
+				ul(id='nav-mobile' class='left hide-on-med-and-down')
+					li
+						a(href='/index') Write
+					li
+						a(href='/messages') Read
+		div(class='container')
+			div(class='row')
+				h1 Look through all the messages
+				div(class='divider ')
+				//- initialize counter for messages
+				- var i = 0
+					each item in data
+						- i += 1
+						- let title = decodeURIComponent(item.title)
+						- let body = decodeURIComponent(item.body)
+						div(class='divider')
+						div(class='section')
+							h5 Message ##{i}
+							p #{ title }
+							p #{ body }
+					div(class='divider')
+						//- div(class='row')
+						//- 	div(class='col s3')
+						//- 	div(class='col s6 center-align') #{ item.title }
+						//- 	div(class='col s3')
+						//- div(class='row')
+						//- 	div(class='col s3')
+						//- 	div(class='col s6 center-align') #{ item.body }
+						//- 	div(class='col s3')
+						//- br
+	//- script(src='/js/jquery-3.1.1.min.js')
+	script(src='/js/materialize.min.js')

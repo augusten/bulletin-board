@@ -3,6 +3,7 @@ const express = require( 'express' )
 const pg = require( 'pg' )
 const bodyParser = require( 'body-parser' )
 const app = express()
+const encodeMoreURI = require( __dirname + '/includes/created_modules/create-string')
 
 // include variable to parse input data
 let urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -12,7 +13,15 @@ let connectionString = 'postgres://' + process.env.POSTGRES_USER + ':' + process
 app.set( 'view engine', 'pug' )
 app.set( 'views', __dirname + '/views' )
 
+//added to use static files, like css
+app.use( express.static( 'includes' ) )
+
 app.get('/', (req, res) => {
+	// render index page
+	res.render('index')
+})
+
+app.get('/index', (req, res) => {
 	// render index page
 	res.render('index')
 })
@@ -20,9 +29,14 @@ app.get('/', (req, res) => {
 app.post('/messages', urlencodedParser, (req, res) => {
 	// The post adds the entry of the user to the database
 	let newMessage = {
-		title: req.body.title,
-		message: req.body.message
+		title: encodeMoreURI(req.body.title),
+		message: encodeMoreURI(req.body.message)
 	}
+	console.log(req.body.message)
+	console.log(newMessage)
+	// if (newMessage.title.indexOf("'") !== -1 || newMessage.message.indexOf("'") !== -1) {
+	// 	console.log('hello')
+	// } else {
 	pg.connect( connectionString, (err, client, done) => {
 		if (err) throw err
 		let queryText = "insert into messages (title, body) values ('" + newMessage.title + "', '" + newMessage.message + "');"
@@ -31,9 +45,10 @@ app.post('/messages', urlencodedParser, (req, res) => {
 			if (err) throw err
 			done()
 			pg.end()
+			res.redirect('messages')
 		})	
 	})
-	res.redirect('messages')
+		// }
 })
 
 app.get('/messages', (req, res) => {
