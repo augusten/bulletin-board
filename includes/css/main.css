@@ -26,6 +26,6 @@ input#call_back_btn {
 	color: black;
 }
 
-/*.divider {
-	margin: 10px;
-}*/
+.divider {
+	height: 8px;
+}
