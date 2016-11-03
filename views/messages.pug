@@ -1,0 +1,33 @@
+html
+	- let title = "All messages"
+	include incl/header.pug
+	body
+		nav
+			div(class='nav-wrapper')
+				a(href='#' class='brand-logo right') Guestbook
+				ul(id='nav-mobile' class='left hide-on-med-and-down')
+					li
+						a(href='/index') Write
+					li
+						a(href='/messages') Read
+		//- main
+		div(class='container')
+			div(class='row')
+				h1 Look through all the messages
+				div(class='divider')
+				//- initialize counter for messages
+				- var i = 0
+					each item in data
+						- i += 1
+						//- decode text from database
+						- let title = decodeURIComponent(item.title)
+						- let body = decodeURIComponent(item.body)
+						div(class='divider')
+						div(class='section')
+							h5 Message ##{i}
+							p #{ title }
+							p #{ body }
+					div(class='divider')
+		include incl/footer.pug
+	script(src='/src/js/jquery-3.1.1.min.js')
+	script(src='/src/js/materialize.min.js')
